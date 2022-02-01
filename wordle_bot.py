@@ -77,9 +77,9 @@ def manual(start):
     p.play()
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description='Wordle Bot by jsearcy1 (with auto mode by davidmm377.)')
-    p.add_argument('--show',action='store_true',default=False,dest='show',required=False)
-    p.add_argument('--minmax',action='store_true',default=False,dest='minmax',required=False)
-    p.add_argument('--start',action='store',type=str,dest='start',help='starting word',default='arise',required=False)
+    p.add_argument('--show',action='store_true',default=False,dest='show',required=False,help="opens world in the browser for you to watch it play!")
+    p.add_argument('--minmax',action='store_true',default=False,dest='minmax',required=False,help="manual interactive mode by jsearcy1")
+    p.add_argument('--start',action='store',type=str,dest='start',help='starting word (default: arise)',default='arise',required=False)
     args = p.parse_args()
     if args.minmax:
         manual(args.start)
