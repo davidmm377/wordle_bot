@@ -5,6 +5,7 @@ from pyshadow.main import Shadow
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import ElementNotInteractableException as ENIE
+from selenium.common.exceptions import WebDriverException as WDE
 import logging
 class Web(object):
     def __init__(self,show=False):
@@ -13,7 +14,11 @@ class Web(object):
         if not show:
             options.add_argument("--headless")
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
-        self._driver = webdriver.Chrome(service=service,options=options)
+        try:
+            self._driver = webdriver.Chrome(service=service,options=options)
+        except WDE:
+            print("Sorry, webdriver-manager isn't working!\nTry minmax.py directly.")
+            exit(-1)
         self._driver.get('https://www.powerlanguage.co.uk/wordle/')
         self._shadow = Shadow(self._driver)
         self._curtile = 0
@@ -52,5 +57,5 @@ class Web(object):
             res = self.do_word(guess)
             print(guess, res)
 if __name__ == "__main__":
-    w = Web(show=True)
+    w = Web(show=False)
     w.mm()
