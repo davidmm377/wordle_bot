@@ -87,7 +87,22 @@ class MinMax():
         self.reset()
         return itr
 
-
+    def auto(self,dw):
+        aw=list(utils.possible_guesses)
+        aa=list(utils.possible_answers)
+        itr=0
+        while True:
+            guess=aa[0] if len(aa) == 1 else self.guess(aa,utils.possible_guesses)
+            con = dw(guess)
+            print(guess,con)
+            if con == 'ggggg': break
+            self.context.add_context_from_pattern(guess, con)
+            aa = utils.allowed_list(utils.possible_answers,self.context)
+            itr += 1
+            if len(aa) < 10: print(aa)
+        self.reset()
+        return itr + 1
+    
     def play(self,verbose=False):
         allowed_words=list(utils.possible_guesses)
         allowed_answers=list(utils.possible_answers)
