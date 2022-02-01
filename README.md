@@ -20,7 +20,7 @@ Wordle Bot by jsearcy1 (with auto mode by davidmm377.)
 
 optional arguments:
   -h, --help     show this help message and exit
-  --show         opens world in the browser for you to watch it play!
+  --show         opens wordle in the browser for you to watch it play!
   --minmax       manual interactive mode by jsearcy1
   --start START  starting word (default: arise)
 ```
