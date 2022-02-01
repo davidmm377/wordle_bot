@@ -50,7 +50,7 @@ class Web(object):
             if retry < 10: self.try_close_popup(retry+1)
     def do_word(self, word : str,retry=0):
         #? check valid
-        self._actions.send_keys(word + Keys.RETURN)
+        self._actions.send_keys(word + self.Keys.RETURN)
         self._actions.perform()
         self._tiles = self._shadow.find_elements("game-tile")[:30]
         evals = [e for e in [t.get_attribute('evaluation') for t in self._tiles] if e is not None]
@@ -76,7 +76,7 @@ def manual(start):
     p = mm(start)
     p.play()
 if __name__ == "__main__":
-    p = argparse.ArgumentParser(description='Wordle Bot by jsearcy1\nwith auto mode by davidmm377.')
+    p = argparse.ArgumentParser(description='Wordle Bot by jsearcy1 (with auto mode by davidmm377.)')
     p.add_argument('--show',action='store_true',default=False,dest='show',required=False)
     p.add_argument('--minmax',action='store_true',default=False,dest='minmax',required=False)
     p.add_argument('--start',action='store',type=str,dest='start',help='starting word',default='arise',required=False)
